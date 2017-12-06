@@ -1,6 +1,7 @@
 <?php
 require_once("connect.php");
 $result = mysqli_query($conn,'SELECT*FROM apply');
+$re = mysqli_query($conn, 'SELECT*FROM post');
 session_start();
  ?>
 <!DOCTYPE html>
@@ -69,7 +70,7 @@ session_start();
               <div class="item active">
                 <div class="contents text-center">
                   <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Memtoring</h1>
-                  <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">여러분의 생각과 경험을 공유해주세요.<br>멘토 지원하기, 멘토링 신청하기를 바로 하고 싶다면 아래 버튼을 눌러주세요.<br> Including - Support, Documentation and Future Updates</p>
+                  <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">나의 멘토, 멘티와 새로운 경험을 함께 해보세요.<br> </p>
                   <a rel="nofollow" href="#support" class="btn btn-common wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">My mentoring 정보</a>
                   <!-- <a rel="nofollow" href="#mentor" class="btn btn-border wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">멘토링 신청하기</a> -->
                   <div class="banner_bottom_btn wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="700ms">
@@ -84,18 +85,15 @@ session_start();
     </header>
     <!-- Header Section End -->
 
-      <!-- Board Section Start 게시판 목록 -->
+      <!-- 멘토 목록 -->
     <section class="team-area section">
         <div class="container">
           <div class="section-header">
             <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Choose your prefer Mentor!</h3>
-            <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">Mentor</h2>
+            <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">Mentors</h2>
           </div>
 
           <div class="row">
-
-
-
               <!-- <img src="img/team/1.png" alt=""> -->
 
                 <?php
@@ -124,11 +122,12 @@ session_start();
         </div>
        </div>
     </section>
-
-
-    <!-- Board Section End  -->
+    <!-- 멘토 목록 End  -->
 
     <!-- Board Section Start 게시판 작성 -->
+    <!-- Board Section Start 게시판 목록 -->
+
+  <!-- Board Section End  -->
     <section id="services" class="services section">
 
       <div class="container">
@@ -136,6 +135,35 @@ session_start();
           <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Board</h3>
           <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">Share your experience!</h2>
         </div>
+        <?php
+        echo "<table class='table table-striped custab'>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Author</th>
+                <th>Hits</th>
+            </tr>
+        </thead>";
+
+        while( $row = mysqli_fetch_assoc($re)){
+        //      if(empty($_GET['category']) == true) {
+        echo
+        "<tbody>";
+            echo "<tr>";
+            echo "<td>".$row['category']."</td>";
+            echo "<td>".$row['title']."</td>";
+            echo "<td>".$row['content']."</td>";
+            echo "<td>".$row['author']."</td>";
+            echo "<td>".$row['hits']."</td>";
+            echo "</tr>";
+        "</tbody>";
+        //    }
+        }
+        echo"</table>";
+
+         ?>
         <form action="dashprocess.php" method="post"> <!-- process.php 에서 처리하도록 한다 -->
           <div class="form-group"> <!-- 글 등록을 위한 Form -->
             <select name="select" class="form-control">
@@ -156,44 +184,11 @@ session_start();
       </div>
     </section>
     <!-- Board Section End -->
-
-    <!-- Support Section 멘토 지원하기-->
-    <section id="support" class="team-area section">
-      <div class="container">
-        <div class="section-header">
-          <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Your Mantor or Mentee</h3>
-          <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">My Mentroign 정보</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="service-box wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
-              <div class="support">
-                <!-- 멘토 신청 폼 -->
-                <form role="form" class="form-horizontal" name="supportform" id="supportform" action="supportwork.php" method="post">
-                  <div class="form-group">
-                    <h3><label for="title" style="color:#000; font-size:20px" >Name</label></h3>
-                    <input name="name" class="form-control" style="color:#000" type="text" id="name" placeholder="이름을 입력해주세요."><br>
-                    <h3><label for="content" style="color:#000; font-size:20px" >Content</label></h3>
-                    <textarea name="content" class="form-control" style="color:#000;" id="content" rows="8" cols="80" placeholder="인사말, 멘토로서의 다짐을 작성해주세요."></textarea><br>
-                    <input class="btn btn-common wow fadeInUp"  type="submit" value="Submit">
-                  </div>
-                </form>
-                <!-- 멘토 신청 폼 끝! -->
-              </div>
-            </div>
-          </div>
-          
-      </div>
-    </section>
-    <!-- 멘토 지원하기 Section Ends -->
-
-    <!-- 멘티 목록 Start -->
     <section id="mentor" class="why">
         <div class="container">
           <div class="section-header">
-            <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Choose your Mentor!</h3>
-            <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">Mentoring</h2>
+            <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Your Mantor or Mentee</h3>
+            <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">My Mentroign 정보</h2>
           </div>
             <div class="row">
             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -202,18 +197,7 @@ session_start();
                 <!-- <img src="img/team/1.png" alt=""> -->
                 <div class="team-content">
                   <h4 class="tem-member">John Doe</h4>
-                  <h6>web developer</h6>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  <ul class="team-social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                  </ul>
+                  <p>Mathcing</p>
                 </div>
               </div>
             </div>
@@ -265,6 +249,33 @@ session_start();
           </div<
         </div>
       </section>
+    <!-- Support Section 멘토 지원하기-->
+    <section id="support" class="team-area section">
+      <div class="container">
+        <div class="section-header">
+          <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Your Mantor or Mentee</h3>
+          <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">My Mentroign 정보</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="service-box wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <div class="support">
+                <div class="team-content">
+                  <h4 class="tem-member">John Doe</h4>
+                  <p>Mathcing</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </section>
+    <!-- 멘토 지원하기 Section Ends -->
+
+    <!-- 멘티 목록 Start -->
+
 
     <!-- 멘토 목록 End -->
 

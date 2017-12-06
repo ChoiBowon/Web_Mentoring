@@ -59,7 +59,6 @@ session_start();
               <?php
 
               echo "<a class='nav-link'>".$_SESSION['userId'].'님 반갑습니다!'."</a>";
-
                ?>
              </li>
 

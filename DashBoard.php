@@ -1,6 +1,7 @@
 <?php
 require_once("connect.php");
 $result = mysqli_query($conn,'SELECT*FROM post');
+
 session_start();
  ?>
 <!DOCTYPE html>
@@ -93,26 +94,65 @@ session_start();
           </div>
 
         <?php
+        $page_size = 5;
+        $page_list_size = 5;
+
+
+
+        $result_count = mysqli_query($conn, 'SELECT count(*) from post');
+        $result_row = mysqli_fetch_row($result_count);
+        $total_row = $result_row[0];
+
+        if (!$no || $no < 0) $no=0;
+
+        if ($total_row <= 0) $total_row = 0; // 총게시물의 값이 없거나 할경우 기본값으로 세팅
+
+        $total_page = floor(($total_row - 1) / $page_size); // 총게시물을 페이지 사이즈로 나눈뒤 내림을 한다.
+
+        $current_page = floor($no/$page_size);
+
+        // echo "<table class='table-striped custab' width=580 border=0  cellpadding=2 cellspacing=1 bgcolor=#777777>
+        // <thead>
+        // <tr height=20 bgcolor=#999999>
+        // <td width=30 align=center><font color=white>Post</font>
+        // </td>
+        // <td width=370  align=center><font color=white>Category</font>
+        // </td>
+        // <td width=370  align=center><font color=white>Title</font>
+        // </td>
+        // <td width=50 align=center><font color=white>Author</font>
+        // </td>
+        // <td width=60 align=center><font color=white>Date</font>
+        // </td>
+        // <td width=40 align=center><font color=white>Hits</font>
+        // </td>
+        // </tr>
+        // </thead>";
         echo "<table class='table table-striped custab'>
         <thead>
             <tr>
-                <th>Category</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Author</th>
-                <th>Hits</th>
+            <th width=80>  Post</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th>Hits</th>
             </tr>
         </thead>";
-
+ // <th>Content</th>
         while( $row = mysqli_fetch_assoc($result)){
-        //      if(empty($_GET['category']) == true) {
+            //  if(empty($_GET['category']) == true) {
         echo
         "<tbody>";
             echo "<tr>";
-            echo "<td>".$row['category']."</td>";
-            echo "<td>".$row['title']."</td>";
-            echo "<td>".$row['content']."</td>";
+            echo "<td width=80 align=center >".$row['post_no']."</td>";
+            echo "<td width=150>".$row['category']."</td>";
+            echo "<td width=600>";
+            echo "<a href=#write?id=".$row['post_no'].">".$row['title']."</a>";
+            echo "</td>";
+            // echo "<td>".$row['content']."</td>";
             echo "<td>".$row['author']."</td>";
+            echo "<td>".$row['created']."</td>";
             echo "<td>".$row['hits']."</td>";
             echo "</tr>";
         "</tbody>";
@@ -120,7 +160,74 @@ session_start();
         }
         echo"</table>";
 
-         ?>
+        ?>
+
+
+
+        <!-- // } else if($_GET['id'] == 2) { // DB에서 Study 테이블을 쿼리하여 글 화면에 출력
+        //   if(empty($_GET['tag']) == true) {
+        //     $result = mysqli_query($conn, "SELECT * FROM study ORDER BY id desc");
+        //     while( $row = mysqli_fetch_assoc($result)){
+        //       echo '<div class="panel panel-default">';
+        //       echo '<div class="panel-heading">';
+        //       echo '<h2><p class="text-center">'.$row['title'].'</p></h2>';
+        //       echo '<h5><p class="text-left">'.$row['created'].'</p></h5>';
+        //       echo '<h4><p class="text-right">'.$row['author'].'</p></h4>';
+        //       echo '</div><br>';
+        //       echo $row['content'];
+        //       echo '<br><br><br><br><br><br><br>';
+        //       echo '</div>';
+        //     }
+        //   } else {
+        //     $temp = "SELECT * FROM study WHERE tag = ".$_GET['tag']." ORDER BY id desc";
+        //     $result = mysqli_query($conn, $temp);
+        //     while( $row = mysqli_fetch_assoc($result)){
+        //       echo '<div class="panel panel-default">';
+        //       echo '<div class="panel-heading">';
+        //       echo '<h2><p class="text-center">'.$row['title'].'</p></h2>';
+        //       echo '<h5><p class="text-left">'.$row['created'].'</p></h5>';
+        //       echo '<h4><p class="text-right">'.$row['author'].'</p></h4>';
+        //       echo '</div><br>';
+        //       echo $row['content'];
+        //       echo '<br><br><br><br><br><br><br>';
+        //       echo '</div>';
+        //     }
+        //   }
+        // } else if($_GET['id'] == 3) { // DB에서 Diary 테이블을 쿼리하여 글 화면에 출력
+        //   $result = mysqli_query($conn, "SELECT * FROM diary ORDER BY id desc");
+        //   while( $row = mysqli_fetch_assoc($result)){
+        //     echo '<div class="panel panel-default">';
+        //     echo '<div class="panel-heading">';
+        //     echo '<h2><p class="text-center">'.$row['title'].'</p></h2>';
+        //     echo '<h5><p class="text-left">'.$row['created'].'</p></h5>';
+        //     echo '<h4><p class="text-right">'.$row['author'].'</p></h4>';
+        //     echo '</div><br>';
+        //     echo $row['content'];
+        //     echo '<br><br><br><br><br><br><br>';
+        //     echo '</div>';
+        //   }
+        // } else if($_GET['id'] == 4) { // DB에서 Book 테이블을 쿼리하여 글 화면에 출력
+        //   $result = mysqli_query($conn, "SELECT * FROM book ORDER BY id desc");
+        //   while( $row = mysqli_fetch_assoc($result)){
+        //     echo '<div class="panel panel-default">';
+        //     echo '<div class="panel-heading">';
+        //     echo '<h2><p class="text-center">'.$row['title'].'</p></h2>';
+        //     echo '<h5><p class="text-left">'.$row['created'].'</p></h5>';
+        //     echo '<h4><p class="text-right">'.$row['author'].'</p></h4>';
+        //     echo '</div><br>';
+        //     echo $row['content'];
+        //     echo '<br><br><br><br><br><br><br>';
+        //     echo '</div>';
+        //   }
+        // } else if($_GET['id'] == 5) { // 업데이트 돼야할 Travel 부분
+        //   echo 'Travel to be continued .....';
+        //   echo '<br><br><br><br><br><br><br>';
+        // } else if($_GET['id'] == 6) { // 글등록 세션
+        //
+        // } -->
+         <!-- ?> -->
+
+
        </div>
     </section>
 
@@ -128,7 +235,7 @@ session_start();
     <!-- Board Section End  -->
 
     <!-- Board Section Start 게시판 작성 -->
-    <section  class="services section">
+    <section id ="write" class="services section">
 
       <div class="container">
         <div class="section-header">

@@ -4,6 +4,8 @@ require_once("connect.php");
     // form에서 입력받은 id와 password
     $userId = $_POST['userID'];
     $pass = $_POST['password'];
+    // $name = "SELECT name FROM member WHERE id='$userId'";
+    // $role = "SELECT role FROM member WHERE id='$userId'";
 
  $sql="SELECT id FROM member WHERE id='$userId' and password='$pass'";
  $result = mysqli_query($conn, $sql);
@@ -15,6 +17,9 @@ require_once("connect.php");
        session_start();
        //session_register("userId");
        $_SESSION['userId']=$userId;
+       $_SESSION['name']=$name;
+       $_SESSION['role']=$role;
+
 
 
        header("location: Main2_Logout.php");

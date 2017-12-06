@@ -25,7 +25,7 @@
      <div class="overlay"></div>
       <nav class="navbar navbar-toggleable-sm fixed-top navbar-light bg-faded">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt=""></a>
+          <a class="navbar-brand" href="index.html"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <i class="icon-menu"></i>
           </button>
