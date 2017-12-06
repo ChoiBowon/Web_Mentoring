@@ -112,11 +112,15 @@ session_start();
                     <input type='hidden' name='menteeapply' value='".$row['name']."'>
                     </ul>";
                     echo "</div>";
+
                     echo "</div>";
                     echo "</div>";
+
                 //    }
                 }
+
                  ?>
+                 <br>
          		</form>
           </div>
         </div>
@@ -183,72 +187,7 @@ session_start();
 
       </div>
     </section>
-    <!-- Board Section End -->
-    <section id="mentor" class="why">
-        <div class="container">
-          <div class="section-header">
-            <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Your Mantor or Mentee</h3>
-            <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">My Mentroign 정보</h2>
-          </div>
-            <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
 
-              <div class="single-team wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="400ms">
-                <!-- <img src="img/team/1.png" alt=""> -->
-                <div class="team-content">
-                  <h4 class="tem-member">John Doe</h4>
-                  <p>Mathcing</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="single-team wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="500ms">
-                <!-- <img src="img/team/2.png" alt=""> -->
-                <div class="team-content">
-                  <h4 class="tem-member">Sommer Christian</h4>
-                  <h6>social marketing</h6>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  <ul class="team-social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="single-team wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms">
-                <!-- <img src="img/team/3.png" alt=""> -->
-                <div class="team-content">
-                  <h4 class="tem-member">Ben Davis</h4>
-                  <h6>Frontend Developer</h6>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  <ul class="team-social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br><br>
-          <div  class="contents text-center">
-          <a rel="nofollow" href="Mentoring.php" class="btn btn-common wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">Apply Mentoring!</a>
-          <br><br>
-          </div<
-        </div>
-      </section>
     <!-- Support Section 멘토 지원하기-->
     <section id="support" class="team-area section">
       <div class="container">
@@ -322,81 +261,7 @@ session_start();
 
     <!-- Footer Section Start -->
     <footer>
-      <!-- Footer Area Start -->
-      <section class="footer-Content">
-        <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-          <h3 class="logo-title">Basic</h3>
-          <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="widget">
-                <div class="textwidget">
-                  <p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                </div>
-                <form class="subscribe-box">
-                  <input placeholder="Your email" type="text">
-                  <input class="btn-system" value="Send" type="submit">
-                </form>
-              </div>
-            </div>
-            <div class="col-md-2 col-sm-6 col-xs-12">
-              <div class="widget">
-                <h3 class="block-title">Links</h3>
-                <ul class="menu">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Works</a></li>
-                  <li><a href="#">Pricing</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-2 col-sm-6 col-xs-12">
-              <div class="widget">
-                <h3 class="block-title">Services</h3>
-                <ul class="menu">
-                  <li><a href="#">Web Design</a></li>
-                  <li><a href="#">Graphics Design</a></li>
-                  <li><a href="#">Branding</a></li>
-                  <li><a href="#">UX Consulting</a></li>
-                  <li><a href="#">Mobile Apps</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="widget">
-                <h3 class="block-title">Flicker Gallery</h3>
-                <ul class="featured-list">
-                  <li>
-                    <a href="#"><img alt="" src="img/featured/img1.jpg"></a>
-                  </li>
-                  <li>
-                    <a href="#"><img alt="" src="img/featured/img2.jpg"></a>
-                  </li>
-                  <li>
-                    <a href="#"><img alt="" src="img/featured/img3.jpg"></a>
-                  </li>
-                  <li>
-                    <a href="#"><img alt="" src="img/featured/img4.jpg"></a>
-                  </li>
-                  <li>
-                    <a href="#"><img alt="" src="img/featured/img5.jpg"></a>
-                  </li>
-                  <li>
-                    <a href="#"><img alt="" src="img/featured/img6.jpg"></a>
-                  </li>
-                  <li>
-                    <a href="#"><img alt="" src="img/featured/img7.jpg"></a>
-                  </li>
-                  <li>
-                    <a href="#"><img alt="" src="img/featured/img8.jpg"></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Footer area End -->
+
 
       <!-- Copyright Start  -->
       <div id="copyright">
@@ -404,15 +269,11 @@ session_start();
           <div class="row">
             <div class="col-md-12">
               <div class="site-info pull-left wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
-                <p>Template by <a rel="nofollow" href="http://graygrids.com">GrayGrids</a></p>
+                <h3 class="logo-title">Women in IT</h3>
+                <p>Web Programming Project - 2017 winter semester</p>
+                <p>Product by Kim Yejin, Choi Bowon, Ha Suhyeon</p>
               </div>
-              <div class="bottom-social-icons social-icon pull-right  wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms">
-                <a class="twitter" href="https://twitter.com/GrayGrids"><i class="fa fa-twitter"></i></a>
-                <a class="facebook"" href="https://web.facebook.com/GrayGrids"><i class="fa fa-facebook"></i></a>
-                <a class="google-plus"" href="https://plus.google.com/+GrayGrids"><i class="fa fa-google-plus"></i></a>
-                <a class="linkedin" href="https://www.linkedin.com/GrayGrids"><i class="fa fa-linkedin"></i></a>
-                <a class="dribble" href="https://dribbble.com/GrayGrids"><i class="fa fa-dribbble"></i></a>
-              </div>
+
             </div>
           </div>
         </div>
