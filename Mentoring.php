@@ -13,7 +13,7 @@ session_start();
     <meta name="keywords" content="Bootstrap, Landing page, Template, Registration, Landing">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Grayrids">
-    <title>Basic - Free/Lite</title>
+      <title>Women in Tech</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -193,23 +193,84 @@ session_start();
       <div class="container">
         <div class="section-header">
           <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Your Mantor or Mentee</h3>
-          <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">My Mentroign 정보</h2>
+          <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">My Mentroing 정보</h2>
         </div>
 
-        <div class="row">
-          <div class="col-md-3 col-sm-6 col-xs-12">
+
             <div class="service-box wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
               <div class="support">
-                <div class="team-content">
-                  <h4 class="tem-member">John Doe</h4>
-                  <p>Mathcing</p>
+                  <h2>내 멘토링 정보</h2>
+                  <br>
+                  <div class="col-md-12 col-sm-6 col-xs-12">
+                    <div class="single-team wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms">
+                      <div class="team-content">
+                        <h4 class="tem-member">멘토링 신청을 수락/거절 해주세요!</h4>
+                        <h6>Frontend Developer</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul class="team-social">
+                          <li><a href="#"><i class="fa fa-facebook"></i></a>
+                          </li>
+                          <li><a href="#"><i class="fa fa-twitter"></i></a>
+                          </li>
+                          <li><a href="#"><i class="fa fa-google-plus"></i></a>
+                          </li>
+                          <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                 </div>
+                <br><br>
+                  <h4 >멘토가 되시겠습니까?</h4>
+                <div class="col-md-12 col-sm-6 col-xs-12">
+                  <div class="single-team wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms">
+                    <div class="team-content">
+                      <h4 class="tem-member">멘토링 신청을 수락/거절 해주세요!</h4>
+                      <h6>Frontend Developer</h6>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      <ul class="team-social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
               </div>
-            </div>
-          </div>
 
-      </div>
+
+                <?php
+
+                $sqli = 'SELECT * FROM matching WHERE name='.$_SESSION['name'].'';//name 자리에 로그인한 멘토의 정보
+
+                $result_apply= mysqli_query($conn, $sqli);
+
+                if( $result_apply ){
+                // success! check results
+
+                while( $row = mysqli_fetch_assoc( $result_apply ) ){
+
+                    echo $row['mentor_id']." ".$row['mentee_id'];
+                }
+                }
+
+                else{
+                // failure! check for errors and do something else
+                echo '<input class="btn btn-default" type="button" value="글 등록" onclick={location.href="http://localhost:8080/studying.php?id=6"}><br><br>';
+
+                }
+
+                ?>
+              </div>
+            </div>
+
+
+
     </section>
     <!-- 멘토 지원하기 Section Ends -->
 
