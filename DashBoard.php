@@ -2,8 +2,6 @@
 require_once("connect.php");
 $result = mysqli_query($conn,'SELECT*FROM post');
 
-
-
 session_start();
  ?>
 <!DOCTYPE html>
@@ -55,10 +53,9 @@ session_start();
                 <a class="nav-link" href="#contact">Contact</a>
               </li>
               <li class = "nav-item">
+                <!-- 로그인 정보 알려주는 곳 -->
               <?php
-
               echo "<a class='nav-link'>".$_SESSION['userId'].'님 반갑습니다!'."</a>";
-
                ?></li>
             </ul>
           </div>
@@ -83,7 +80,6 @@ session_start();
           </div>
         </div>
       </div>
-
     </header>
     <!-- Header Section End -->
 
@@ -96,7 +92,6 @@ session_start();
           </div>
 
         <?php
-
         echo "<table class='table table-striped custab'>
         <thead>
             <tr>
@@ -108,26 +103,21 @@ session_start();
             <th>Hits</th>
             </tr>
         </thead>";
- // <th>Content</th>
+
+// post db 에서 게시글 쿼리 해옴
         while( $row = mysqli_fetch_assoc($result)){
-            //  if(empty($_GET['category']) == true) {
-        echo
-        "<tbody>";
-            echo "<tr>";
-            echo "<td width=80 align=center >".$row['post_no']."</td>";
-            echo "<td width=150>".$row['category']."</td>";
-            echo "<td width=550>";
-
-            echo "<a href='Dashboard.php?idd=".$row['post_no']."'>".$row['title']."</a>";
-            echo "</td>";
-            // echo "<td>".$row['content']."</td>";
-
-            echo "<td width=100>".$row['author']."</td>";
-            echo "<td>".$row['created']."</td>";
-            echo "<td>".$row['hits']."</td>";
-            echo "</tr>";
-        "</tbody>";
-        //    }
+          echo"<tbody>";
+          echo "<tr>";
+          echo "<td width=80 align=center >".$row['post_no']."</td>";
+          echo "<td width=150>".$row['category']."</td>";
+          echo "<td width=550>";
+          echo "<a href='Dashboard.php?idd=".$row['post_no']."'>".$row['title']."</a>";
+          echo "</td>";
+          echo "<td width=100>".$row['author']."</td>";
+          echo "<td>".$row['created']."</td>";
+          echo "<td>".$row['hits']."</td>";
+          echo "</tr>";
+          echo "</tbody>";
         }
         echo"</table>";
 
@@ -135,28 +125,25 @@ session_start();
 
        </div>
     </section>
-
-
-    <!-- Board Section End  -->
+    <!-- Board Section End 게시판 목록 -->
 
 
 
     <!-- Board Section Start 게시판 작성 , 글 확인 -->
     <section id ="write" class="services section">
-
       <div class="container">
         <div class="section-header">
           <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Board</h3>
           <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">Share your experience!</h2>
         </div>
         <?php
-        $bno = $_GET['idd'];
-        $result_post = mysqli_query($conn,'SELECT * FROM post where post_no = '.$bno.'');
-        // $sql = mysql_db_query("SELECT * FROM post WHERE post_no='".$bno."'");
-        // $result_post = $sql->fetch_array();
-        $board = mysqli_fetch_array($result_post);
+        if(empty($_GET['idd'])===false){   // 어떤 글이라도 클릭했을 시 idd 를 받아옴
+          $bno = $_GET['idd'];
+          $result_post = mysqli_query($conn,'SELECT * FROM post where post_no = '.$bno.'');
+          $board = mysqli_fetch_array($result_post);
+        }
 
-        if(empty($_GET['idd']) === true || $_GET['idd'] == 100) {
+        if(empty($_GET['idd']) === true || $_GET['idd'] == 100) {   //아무런 글 보기를 선택하지 않았거나, 글을 확인하는 도중 글작성을 누른 경우
           echo "<form action='dashprocess.php' method='post'>
             <div class='form-group'>
               <select name='select' class='form-control'>
@@ -172,7 +159,7 @@ session_start();
               <input class='btn btn-common wow fadeInUp'  type='submit' value='Submit'>
             </div>
           </form>";
-        }else if($_GET['idd'] == 1 || $_GET['idd'] == 2 || $_GET['idd'] == 3 || $_GET['idd'] == 4 || $_GET['idd'] == 5 ){
+        }else if($_GET['idd'] == $board['post_no'] ){  // 글을 클릭한 경우
 
           echo "<table class='table table-striped custab' >";
           echo "<tr><td  colspan=4 align=center  bgcolor=#999999 >
@@ -196,31 +183,29 @@ session_start();
           <td colspan=3 style='color:#fff'>".$board['content']."</td>
           </tr>";
           //목록보기, 글쓰기, 삭제 버튼
-          echo "<tr>
-          <table width =100%>
-          <tr>
+          echo "<tr><table width =100%><tr>
           <td colsapn=4 align=right><a href=#board><font color=white>[ 목록보기 ]</font></a>";
-          echo "<a href='deletepost.php?idd=".$board['post_no']."'><font color=white>[ 삭제 ]</font></a>";
+          // 삭제 버튼 클릭시 DeletePost.php 에서 처리한다
+          echo "<a href='DeletePost.php?idd=".$board['post_no']."'><font color=white>[ 삭제 ]</font></a>";
           echo "<a href='Dashboard.php?idd=100'><font color=white>[ 글쓰기 ]</font></a></td></tr>";
           echo "</td>
           </tr>";
           echo "</table>";
 
-
-//조회수 업데이트
+          //조회수 업데이트
           $result_post = mysqli_query($conn,'UPDATE post SET hits=hits+1 WHERE post_no = '.$bno.'');
 
         }else {
-//첫 화면에서 넘어갈 시 조회수 업데이트
+
+          //첫 화면에서 넘어갈 시 조회수 업데이트
           $result = mysqli_query($conn,'UPDATE post SET hits=hits+1 WHERE post_no = '.$bno.'');
 
         }
-
         ?>
 
       </div>
     </section>
-    <!-- Board Section End -->
+    <!-- Board Section End 게시글 확인 끝-->
 
     <!-- Support Section 멘토 지원하기-->
     <section id="support" class="team-area section">
@@ -231,10 +216,10 @@ session_start();
         </div>
 
         <div class="row">
-          <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="service-box wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
               <div class="support">
-                <!-- 멘토 신청 폼 -->
+                <!-- 멘토 신청 폼 supportwork.php 에서 처리한다-->
                 <form role="form" class="form-horizontal" name="supportform" id="supportform" action="supportwork.php" method="post">
                   <div class="form-group">
                     <h3><label for="name" style="color:#000; font-size:20px" >Name</label></h3>
@@ -260,39 +245,37 @@ session_start();
           <div class="col-md-6 col-sm-6 col-xs-12">
             <div id="testimonial" class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
               <div class="touch-slider" class="owl-carousel owl-theme">
+                <div class="item text-center">
+                  <p>Dreams do come true, but not without the help of others, a good education, a strong work ethic, and the courage to lean in</p>
+                  <div class="client-info">
+                   <h2 class="client-name">Ursula Burns</h2>
+                   <h4 class="client-details">CEO Xerox</h4>
+                  </div>
+                  <img class="img-member" src="img/imgsample/img1.png" alt="">
+                </div>
+                <div class="item text-center">
+                  <p>I also say to my team: Do 10% of your job shittily. It's okay to do something shittily. Perfectionisn prevents us from taking double steps in our career. We think we have to be perfect, but we don't.</p>
+                  <div class="client-info">
+                   <h2 class="client-name">Reshma Saujani</h2>
+                   <h4 class="client-details">Founder of Girls Who Code</h4>
+                  </div>
+                  <img class="img-member" src="img/imgsample/img2.png" alt="">
+                </div>
                 <div class="item active text-center">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conseq uatuis aute irure dolor.</p>
+                  <p>The time is long overdue to encourage more women to dream the possible dream.</p>
                   <div class="client-info">
-                   <h2 class="client-name">Song Minseok</h2>
-                   <h4 class="client-details">Founder & CEO, JN Inc.</h4>
+                   <h2 class="client-name">Sheryl Sandberg</h2>
+                   <h4 class="client-details">COO of Facebook</h4>
                   </div>
-                  <img class="img-member" src="img/testimonial/img1.png" alt="">
-                </div>
-                <div class="item text-center">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conseq uatuis aute irure dolor.</p>
-                  <div class="client-info">
-                   <h2 class="client-name">Jhon Nash</h2>
-                   <h4 class="client-details">Founder & CEO, JN Inc.</h4>
-                  </div>
-                  <img class="img-member" src="img/testimonial/img2.png" alt="">
-                </div>
-                <div class="item text-center">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conseq uatuis aute irure dolor.</p>
-                  <div class="client-info">
-                   <h2 class="client-name">Jhon Nash</h2>
-                   <h4 class="client-details">Founder & CEO, JN Inc.</h4>
-                  </div>
-                  <img class="img-member" src="img/testimonial/img3.png" alt="">
+                  <img class="img-member" src="img/imgsample/img3.png" alt="">
                 </div>
               </div>
             </div>
           </div>
-          <!-- 우수 멘토 목록 끝 -->
+          <!--우수 멘토 목록 끝 -->
       </div>
     </section>
     <!-- 멘토 지원하기 Section Ends -->
-
-
 
     <!-- Contact Icon Start -->
     <div id = "contact" class="section contact-icon">

@@ -84,15 +84,10 @@
         </div>
         <div class="row">
           <div class="col-md-6 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <form class="join" action="process.php" method="post">
+            <form class="join" action="SignUpprocess.php" method="post">
 
             <div class="col-md-6 col-md-offset-3">
-              <!-- <fieldset><legend>파일업로드</legend>
-                업로드 용량제한: 5M
-                <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
-                <input type="hidden" name="mode" value="upload" />
-                <input type="file" name="upload" />
-              </fieldset> -->
+
                 <div class="form-group">
                 <label for="InputId">ID</label>
                 <input type="text" class="form-control" name="Id" style="color:#000" placeholder="아이디">

@@ -13,7 +13,7 @@ $result = mysqli_query($conn,'SELECT*FROM post');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Grayrids">
     <title>Women in Tech</title>
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -49,7 +49,7 @@ $result = mysqli_query($conn,'SELECT*FROM post');
                 <a class="nav-link" href="#signup">Sign Up</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#member">Member</a>
+                <a class="nav-link" href="#member">Mentoring</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#information">Information</a>
@@ -69,9 +69,7 @@ $result = mysqli_query($conn,'SELECT*FROM post');
                 <div class="contents text-center">
                   <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Women Developer for Society</h1>
                   <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">여성 개발자들을 위한 공간<br>여성 개발자로서, 여성 개발자를 준비하는 학생으로서, <br> Leading Each Other.</p>
-                  <!-- <a rel="nofollow" href="https://rebrand.ly/basic-purchase" class="btn btn-common wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">Get Full Version</a> -->
-                  <!-- <a rel="nofollow" href="https://rebrand.ly/basic-purchase" class="btn btn-border wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">Learn More</a> -->
-                  <div class="banner_bottom_btn wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="700ms">
+                <div class="banner_bottom_btn wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="700ms">
                     <a href="#about" class="js-target-scroll"><i class="icon-mouse"></i></a>
                   </div>
                 </div>
@@ -79,7 +77,6 @@ $result = mysqli_query($conn,'SELECT*FROM post');
           </div>
         </div>
       </div>
-
     </header>
     <!-- Header Section End -->
 
@@ -160,10 +157,9 @@ $result = mysqli_query($conn,'SELECT*FROM post');
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="service-box wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
               <div class="login">
-                <!-- 로그인 폼 -->
+                <!-- 로그인 폼 login.php 에서 처리하도록 한다 -->
                 <form role="form" class="form-horizontal" name="loginform" id="loginform" action="login.php" method="post">
                   <div class="form-group">
-
                     <div class="col-md-10">
                         <h3><a href="#">ID</a></h3>
                       <input type="text" name="userID" id="user_login" class="form-control" placeholder="userID">
@@ -181,22 +177,23 @@ $result = mysqli_query($conn,'SELECT*FROM post');
                     </div>
                   </div>
                 </form>
-                <!-- 로그인 폼 끝! -->
+                <!-- 로그인 폼 end! -->
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section id="signup" class="section">
-      <!-- Container Starts 회원가입 -->
-                <div  class="contents text-center">
 
-                  <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="350ms">If you were not a member,<br>Please Sign up!</p>
-                  <a rel="nofollow" href="SignUp.php" class="btn btn-common wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">Go to Sign Up</a>
-                </div>
+    <!-- Signup Section Start -->
+      <!--SignUp.php 로 화면 전환 -->
+    <section id="signup" class="section">
+      <div  class="contents text-center">
+        <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="350ms">If you were not a member,<br>Please Sign up!</p>
+        <a rel="nofollow" href="SignUp.php" class="btn btn-common wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">Go to Sign Up</a>
+      </div>
     </section>
-  <!-- Login Section End -->
+  <!-- Signup Section End -->
 
     <!-- Member Dashboard Section Start -->
     <section id="member" class="services section">
@@ -240,22 +237,11 @@ $result = mysqli_query($conn,'SELECT*FROM post');
               </div>
               <h3><a href="#">Mentoring</a></h3>
               <p>멘토링을 통해 더욱 성장한 여성개발자가 될 수 있습니다.</p>
-
-
             </div>
-
           </div>
-
         </div>
-
       </div>
       <br><br>
-      <!-- <div class="contents text-center">
-        <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">
-          여성 개발자들을 위한 공간<br>여성 개발자로서, 여성 개발자를 준비하는 학생으로서, <br> Leading Each Other.</p>
-
-      </div> -->
-
       <div class="contents text-center">
         <a rel="nofollow" onclick="alert('회원가입 혹은 로그인을 해주세요!')" class="btn btn-common wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">More</a>
       </div>
@@ -387,20 +373,15 @@ $result = mysqli_query($conn,'SELECT*FROM post');
               </ul>
             </div>
           </div>
-
       </div>
       </div>
       <br>
-
-
-
       </div>
     </section>
     <!-- information Section End  -->
 
 
-
-    <!-- Contact Icon Start -->
+    <!-- Contact icon Start -->
     <div id = "contact" class="section contact-icon">
       <div class="overlay"></div>
       <div class="container">
@@ -442,8 +423,6 @@ $result = mysqli_query($conn,'SELECT*FROM post');
 
     <!-- Footer Section Start -->
     <footer>
-
-
       <!-- Copyright Start  -->
       <div id="copyright">
         <div class="container">
@@ -460,7 +439,6 @@ $result = mysqli_query($conn,'SELECT*FROM post');
         </div>
       </div>
       <!-- Copyright End -->
-
     </footer>
     <!-- Footer Section End -->
 

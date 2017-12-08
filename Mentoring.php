@@ -41,7 +41,7 @@ session_start();
                 <a class="nav-link" href="logout.php">Logout</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#member">Member</a>
+                <a class="nav-link" href="#member">Mentoring</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#information">Information</a>
@@ -92,10 +92,7 @@ session_start();
             <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Choose your prefer Mentor!</h3>
             <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">Mentors</h2>
           </div>
-
           <div class="row">
-              <!-- <img src="img/team/1.png" alt=""> -->
-
                 <?php
                 while( $row = mysqli_fetch_assoc($result)){
                 //      if(empty($_GET['category']) == true) {
@@ -115,8 +112,6 @@ session_start();
 
                     echo "</div>";
                     echo "</div>";
-
-                //    }
                 }
 
                  ?>

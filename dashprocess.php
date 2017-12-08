@@ -19,5 +19,5 @@ $sql = "INSERT INTO post (`title`,`author`, `created`, `content`, `hits`, `categ
  mysqli_query($conn, $sql);
 
 
-   header("Location:Main2_Logout.php");
+   header("Location:Dashboard.php");
  ?>

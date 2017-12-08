@@ -31,7 +31,6 @@ session_start();
      <div class="overlay"></div>
       <nav class="navbar navbar-toggleable-sm fixed-top navbar-light bg-faded">
         <div class="container">
-          <!-- <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt=""></a> -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <i class="icon-menu"></i>
           </button>
@@ -47,7 +46,7 @@ session_start();
                 <a class="nav-link" href="logout.php">Logout</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#member">Member</a>
+                <a class="nav-link" href="#member">Mentoring</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#information">Information</a>
@@ -56,8 +55,8 @@ session_start();
                 <a class="nav-link" href="#contact">Contact</a>
               </li>
               <li class="nav-item">
+                <!-- 로그인 정보 알려주는 곳 -->
               <?php
-
               echo "<a class='nav-link'>".$_SESSION['userId'].'님 반갑습니다!'."</a>";
                ?>
              </li>
@@ -74,9 +73,7 @@ session_start();
                 <div class="contents text-center">
                   <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Women Developer for Society</h1>
                   <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">여성 개발자들을 위한 공간<br>여성 개발자로서, 여성 개발자를 준비하는 학생으로서, <br> Leading Each Other.</p>
-                  <!-- <a rel="nofollow" href="https://rebrand.ly/basic-purchase" class="btn btn-common wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">Get Full Version</a> -->
-                  <!-- <a rel="nofollow" href="https://rebrand.ly/basic-purchase" class="btn btn-border wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">Learn More</a> -->
-                  <div class="banner_bottom_btn wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="700ms">
+              <div class="banner_bottom_btn wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="700ms">
                     <a href="#about" class="js-target-scroll"><i class="icon-mouse"></i></a>
                   </div>
                 </div>
@@ -196,22 +193,12 @@ session_start();
               </div>
               <h3><a href="#">Mentoring</a></h3>
               <p>멘토링을 통해 더욱 성장한 여성개발자가 될 수 있습니다.</p>
-
-
             </div>
-
-          </div>
-
         </div>
-
       </div>
-      <br><br>
-      <!-- <div class="contents text-center">
-        <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">
-          여성 개발자들을 위한 공간<br>여성 개발자로서, 여성 개발자를 준비하는 학생으로서, <br> Leading Each Other.</p>
-
-      </div> -->
-
+    </div>
+    <br><br>
+              <!-- Mentoring.php로 전환 -->
       <div class="contents text-center">
         <a rel="nofollow" href="DashBoard.php" class="btn btn-common wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">More</a>
       </div>
@@ -344,17 +331,12 @@ session_start();
               </ul>
             </div>
           </div>
-
-      </div>
+        </div>
       </div>
       <br>
-
-
-
-      </div>
+    </div>
     </section>
     <!-- information Section End  -->
-
 
 
     <!-- Contact Icon Start -->
@@ -399,8 +381,6 @@ session_start();
 
     <!-- Footer Section Start -->
     <footer>
-
-
       <!-- Copyright Start  -->
       <div id="copyright">
         <div class="container">
@@ -411,13 +391,11 @@ session_start();
                 <p>Web Programming Project - 2017 winter semester</p>
                 <p>Product by Kim Yejin, Choi Bowon, Ha Suhyeon</p>
               </div>
-
             </div>
           </div>
         </div>
       </div>
       <!-- Copyright End -->
-
     </footer>
     <!-- Footer Section End -->
 
