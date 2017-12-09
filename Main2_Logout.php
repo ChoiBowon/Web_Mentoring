@@ -2,6 +2,7 @@
 require_once("connect.php");
 $result = mysqli_query($conn,'SELECT*FROM post');
 session_start();
+//include("login.php");
 
  ?>
 <!DOCTYPE html>
@@ -206,13 +207,73 @@ session_start();
     <!-- Member Section End -->
 
     <!-- Information Section Start  -->
-    <section id="information" class="team-area section">
-      <div class="container">
-        <div class="section-header">
-          <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Information</h3>
-          <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">Notices</h2>
-        </div>
+      <section id="information" class="team-area section">
+        <div class="container">
+          <div class="section-header">
+            <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Information</h3>
+            <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">Notices</h2>
+          </div>
 
+          <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="single-team wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="400ms">
+                <div class="team-content">
+                  <h4 class="tem-member">Facebook</h4>
+                  <h6>U.S.A</h6>
+                  <p>The Facebook Page celebrates how our friends inspire us, support us, and help us discover the world when we connect.</p>
+                  <ul class="team-social">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="single-team wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="500ms">
+                <div class="team-content">
+                  <h4 class="tem-member">Google</h4>
+                  <h6>U.S.A</h6>
+                  <p>Organizing the world's information and making it universally accessible and useful.</p>
+                  <ul class="team-social">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="single-team wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms">
+                <div class="team-content">
+                  <h4 class="tem-member">Apple</h4>
+                  <h6>U.S.A</h6>
+                  <p>The most powerful products for business are the ones people already love to use.</p>
+                  <ul class="team-social">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+        <br><br>
         <div class="row">
           <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="single-team wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="400ms">
@@ -331,11 +392,10 @@ session_start();
             </div>
           </div>
         </div>
+        <br>
       </div>
-      <br>
-    </div>
-    </section>
-    <!-- information Section End  -->
+      </section>
+      <!-- information Section End  -->
 
 
     <!-- Contact Icon Start -->

@@ -19,39 +19,45 @@ require_once("connect.php");
  $sql = "SELECT * FROM member WHERE id = '{$memberId}'";
  $res = $conn->query($sql);
  if($res->num_rows >= 1){
-     echo '이미 존재하는 아이디가 있습니다.';
+   echo ("<script>alert('이미 존재하는 아이디가 있습니다.');history.go(-1);</script>");
      exit;
  }
 
  //비밀번호 일치하는지 확인
  if($memberPw !== $memberPw2){
-     echo '비밀번호가 일치하지 않습니다.';
+   echo ("<script>alert('일치하는 비밀번호가 없습니다.');history.go(-1);</script>");
      exit;
  }
 
  //이름이 빈 값이 아닌지
  if($memberName == ''){
-     echo '이름의 값이 없습니다.';
+     echo ("<script>alert('이름의 값이 없습니다.');history.go(-1);</script>");
+exit;
  }
  //역할(멘토/멘티)이 빈값이 아닌지
  if($memberRole == ''){
-     echo '멘토/멘티의 값이 없습니다.';
+     echo ("<script>alert('멘토/멘티의 값이 없습니다.');history.go(-1);</script>");
+exit;
  }
  //전화번호가 빈값이 아닌지
  if($memberPhoneNum == ''){
-     echo '전화번호의 값이 없습니다.';
+     echo ("<script>alert('전화번호의 값이 없습니다.');history.go(-1);</script>");
+exit;
  }
  //소속이 빈 값이 아닌지
  if($memberDept == ''){
-     echo '소속의 값이 없습니다.';
+     echo ("<script>alert('소속의 값이 없습니다.');history.go(-1);</script>");
+exit;
  }
  //학년이 빈값이 아닌지
  if($memberYear == ''){
-     echo '직급/학년의 값이 없습니다.';
+     echo ("<script>alert('직급/학년의 값이 없습니다.');history.go(-1);</script>");
+exit;
  }
  //전공이 빈값이 아닌지
  if($memberMajor == ''){
-     echo '학과/전공의 값이 없습니다.';
+     echo ("<script>alert('학과/전공의 값이 없습니다.');history.go(-1);</script>");
+exit;
  }
 
  $sql="INSERT INTO member (id,password,name, email,phonenumber, department, major, year, role) VALUES('".$_POST['Id']."','".$_POST['Password']."','".$_POST['Name']."','".$_POST['Email']."','".$_POST['PhoneNum']."','".$_POST['Department']."','"

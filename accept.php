@@ -12,11 +12,8 @@ require_once("connect.php");
  $bool=TRUE;
  $sql= mysqli_query($conn, "UPDATE matching SET isMentor='True' WHERE mentor_id='".$idmentor."' and mentee_id='".$idmentee."'");
 
- header("Location:Mentoring.php");
-=======
  echo ("<script>alert('매칭되었습니다!');history.go(-1);</script>");
 
  header("Location:Mentoring.php");
->>>>>>> master
 
 ?>

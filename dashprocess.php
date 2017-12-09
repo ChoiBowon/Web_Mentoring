@@ -7,7 +7,7 @@ if($_POST['select'] == '게시글') { // select태그를 확인하여 어떤 DB�
 } else if($_POST['select'] == '후기'){
   $category = '후기';
 } else {
-  $category = '답글';
+  $category = '멘토링';
 }
 
   $title = htmlspecialchars($_POST['title']); // 글저장에 태그표시 가능하게

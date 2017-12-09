@@ -3,6 +3,7 @@ require_once("connect.php");
 $result = mysqli_query($conn,'SELECT*FROM post');
 
 session_start();
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -149,8 +150,8 @@ session_start();
             <div class='form-group'>
               <select name='select' class='form-control'>
                 <option>게시글</option>
+                <option>멘토링</option>
                 <option>후기</option>
-                <option>답글</option>
               </select>
               <br>
               <label for='title' style='color:#fff; font-size:20px' >Title</label>
