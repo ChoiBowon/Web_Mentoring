@@ -1,33 +1,22 @@
 <?php
 header("Content-Type:text/html;charset=utf-8");
-
-include("mentoring.php");
-
-if (!$conn)
-{
-   echo "MySQL 접속 에러 : ";
-   echo mysqli_connect_error();
-   exit();
-}
+session_start();
+require_once("connect.php");
 
  $result = mysqli_query($conn, "SELECT * FROM matching");
 
  //$_SESSION['userId']=$idmentor;
- $idmentor='albert';//로그인된 멘토가 멘토링 신청을 accept
+ $idmentor=$_SESSION['name'];//로그인된 멘토가 멘토링 신청을 accept
  $idmentee = $_POST['idmentee'];
 
  $bool=TRUE;
+ $sql= mysqli_query($conn, "UPDATE matching SET isMentor='True' WHERE mentor_id='".$idmentor."' and mentee_id='".$idmentee."'");
 
-$sql="UPDATE `matching` SET `isMentor`=true WHERE mentor_id='albert' AND mentee_id='lallasweet'";
+ header("Location:Mentoring.php");
+=======
+ echo ("<script>alert('매칭되었습니다!');history.go(-1);</script>");
 
- $result = mysqli_query($conn,$sql);
-if($result){
-echo "성공";
-}else{
-
-    echo "실패";
-}
-
-//header('Location: http://localhost/mymentoring.php');
+ header("Location:Mentoring.php");
+>>>>>>> master
 
 ?>
