@@ -2,6 +2,7 @@
 require_once("connect.php");
 $result = mysqli_query($conn,'SELECT*FROM apply');
 $re = mysqli_query($conn, 'SELECT*FROM post');
+
 session_start();
  ?>
 <!DOCTYPE html>
@@ -99,21 +100,20 @@ session_start();
                 echo "  <div class='col-md-4 col-sm-6 col-xs-12'>";
                 echo "  <div class='single-team wow fadeInLeft' data-wow-duration='1000ms' data-wow-delay='400ms'>";
                 echo "<div class='team-content'>";
-                    echo "<h4 class='tem-member'>".$row['name']."</h4>";
-                    echo "<h6>".$row['job']."</h6>";
-                    echo "<p>".$row['content']."</p>";
-                    echo "<ul class='team-social'>
+                echo "<h4 class='tem-member'>".$row['name']."</h4>";
+                echo "<h6>".$row['job']."</h6>";
+                echo "<p>".$row['content']."</p>";
+                echo "<ul class='team-social'>
                     <li><form action='apply.php' method='get'>
                     <input type='submit' value='Apply'rel='nofollow' class='btn btn-common wow fadeInUp' data-wow-duration='1000ms' data-wow-delay='400ms'>
+                    <input type='hidden' name='menteeapply' value='".$row['name']."'></form>
                     </li>
-                    <input type='hidden' name='menteeapply' value='".$row['name']."'>
                     </ul>";
                     echo "</div>";
 
                     echo "</div>";
                     echo "</div>";
                 }
-
                  ?>
                  <br>
          		</form>
@@ -128,59 +128,125 @@ session_start();
 
   <!-- Board Section End  -->
     <section id="services" class="services section">
+      <!-- Board Section Start 게시판 목록 -->
+    <section id="board" class="team-area section">
+        <div class="container">
+          <div class="section-header">
+            <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Board</h3>
+            <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">Board</h2>
+          </div>
 
-      <div class="container">
-        <div class="section-header">
-          <h3 class="section-subtitle wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">Board</h3>
-          <h2 class="section-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">Share your experience!</h2>
-        </div>
         <?php
         echo "<table class='table table-striped custab'>
         <thead>
             <tr>
-                <th>Category</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Author</th>
-                <th>Hits</th>
+            <th width=80>  Post</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th>Hits</th>
             </tr>
         </thead>";
 
-        while( $row = mysqli_fetch_assoc($re)){
-        //      if(empty($_GET['category']) == true) {
-        echo
-        "<tbody>";
-            echo "<tr>";
-            echo "<td>".$row['category']."</td>";
-            echo "<td>".$row['title']."</td>";
-            echo "<td>".$row['content']."</td>";
-            echo "<td>".$row['author']."</td>";
-            echo "<td>".$row['hits']."</td>";
-            echo "</tr>";
-        "</tbody>";
-        //    }
+  // post db 에서 게시글 쿼리 해옴
+    $result_post = mysqli_query($conn,'SELECT*FROM post');
+        while( $row = mysqli_fetch_assoc($result_post)){
+          echo"<tbody>";
+          echo "<tr>";
+          echo "<td width=80 align=center >".$row['post_no']."</td>";
+          echo "<td width=150>".$row['category']."</td>";
+          echo "<td width=550>";
+          echo "<a href='Dashboard.php?idd=".$row['post_no']."'>".$row['title']."</a>";
+          echo "</td>";
+          echo "<td width=100>".$row['author']."</td>";
+          echo "<td>".$row['created']."</td>";
+          echo "<td>".$row['hits']."</td>";
+          echo "</tr>";
+          echo "</tbody>";
         }
         echo"</table>";
 
-         ?>
-        <form action="dashprocess.php" method="post"> <!-- process.php 에서 처리하도록 한다 -->
-          <div class="form-group"> <!-- 글 등록을 위한 Form -->
-            <select name="select" class="form-control">
-              <option>게시글</option>
-              <option>후기</option>
-              <option>답글</option>
-            </select>
-            <br>
-            <label for="title" style="color:#fff; font-size:20px" >Title</label>
-            <input name="title" class="form-control"  type="text" id="title"><br>
-            <!-- style="background-color:#f6f6f6; color:#000" -->
-            <label for="content" style="color:#fff; font-size:20px" >Content</label>
-            <textarea name="content" class="form-control" id="content" rows="8" cols="80"></textarea><br>
-            <input class="btn btn-common wow fadeInUp"  type="submit" value="Submit">
-          </div>
-        </form>
+        ?>
+       </div>
+    </section>
+    <!-- Board Section End 게시판 목록 -->
+
+
+
+    <!-- Board Section Start 게시판 작성 , 글 확인 -->
+    <section id ="write" class="services section">
+      <div class="container">
+        <?php
+        if(empty($_GET['idd'])===false){   // 어떤 글이라도 클릭했을 시 idd 를 받아옴
+          $bno = $_GET['idd'];
+          $result_post = mysqli_query($conn,'SELECT * FROM post where post_no = '.$bno.'');
+          $board = mysqli_fetch_array($result_post);
+        }
+
+        if(empty($_GET['idd']) === true || $_GET['idd'] == 100) {   //아무런 글 보기를 선택하지 않았거나, 글을 확인하는 도중 글작성을 누른 경우
+          echo "<form action='dashprocess.php' method='post'>
+            <div class='form-group'>
+              <select name='select' class='form-control'>
+                <option>게시글</option>
+                <option>후기</option>
+                <option>답글</option>
+              </select>
+              <br>
+              <label for='title' style='color:#fff; font-size:20px' >Title</label>
+              <input name='title' class='form-control'  type='text' id='title'><br>
+              <label for='content' style='color:#fff; font-size:20px' >Content</label>
+              <textarea name='content' class='form-control' id='content' rows='8' cols='80'></textarea><br>
+              <input class='btn btn-common wow fadeInUp'  type='submit' value='Submit'>
+            </div>
+          </form>";
+        }else if($_GET['idd'] == $board['post_no'] ){  // 글을 클릭한 경우
+
+          echo "<table class='table table-striped custab' >";
+          echo "<tr><td  colspan=4 align=center  bgcolor=#999999 >
+        <font color=white size=4px >Board</font></td></tr>";
+          echo "<tr>
+          <td width=50 bgcolor=white>Category</td>
+          <td width=240 style='color:#fff'>".$board['category']."</td>";
+          echo "<td width=50 bgcolor=white>Author</td>
+          <td width=240 style='color:#fff'>".$board['author']."</td></tr>";
+          echo "<tr>
+          <td width=50 bgcolor=white>Dates</td>
+          <td width=240 style='color:#fff'>".$board['created']."</td>";
+          echo "<td width=50 bgcolor=white>Hits</td>
+          <td width=240 style='color:#fff'>".$board['hits']."</td></tr>";
+          // 제목이랑 내용
+          echo "<tr>
+          <td width=50 bgcolor=#999999  align=center><font color=white size=4px>Title</font></td>
+          <td colspan=3 width=240 style='color:#fff' >".$board['title']."</td></tr>";
+          echo"<tr>
+          <td width=50 height=250 bgcolor=#999999 align=center><font color=white size=4px>Content</font></td>
+          <td colspan=3 style='color:#fff'>".$board['content']."</td>
+          </tr>";
+          //목록보기, 글쓰기, 삭제 버튼
+          echo "<tr><table width =100%><tr>
+          <td colsapn=4 align=right><a href=#board><font color=white>[ 목록보기 ]</font></a>";
+          // 삭제 버튼 클릭시 DeletePost.php 에서 처리한다
+          echo "<a href='DeletePost.php?idd=".$board['post_no']."'><font color=white>[ 삭제 ]</font></a>";
+          echo "<a href='Dashboard.php?idd=100'><font color=white>[ 글쓰기 ]</font></a></td></tr>";
+          echo "</td>
+          </tr>";
+          echo "</table>";
+
+          //조회수 업데이트
+          $result_post = mysqli_query($conn,'UPDATE post SET hits=hits+1 WHERE post_no = '.$bno.'');
+
+        }else {
+
+          //첫 화면에서 넘어갈 시 조회수 업데이트
+          $result = mysqli_query($conn,'UPDATE post SET hits=hits+1 WHERE post_no = '.$bno.'');
+
+        }
+        ?>
 
       </div>
+    </section>
+    <!-- Board Section End 게시글 확인 끝-->
     </section>
 
     <!-- Support Section 멘토 지원하기-->
@@ -202,16 +268,32 @@ session_start();
                         <h4 class="tem-member">멘토링 신청을 수락/거절 해주세요!</h4>
                         <h6>Frontend Developer</h6>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul class="team-social">
-                          <li><a href="#"><i class="fa fa-facebook"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fa fa-twitter"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fa fa-google-plus"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                          </li>
-                        </ul>
+                        <?php
+
+                        //if($role='mentee') mentee인경우
+                        $id=$_SESSION['name'];
+                        $sql = 'SELECT * FROM matching WHERE mentee_id="'.$id.'"';
+                        $sql_mentor = 'SELECT * FROM matching WHERE mentor_id="'.$id.'"';
+                        $result = mysqli_query($conn, $sql);
+                        $result_mentor = mysqli_query($conn, $sql_mentor);
+
+                        if( $result ){  // success! check results
+                        while( $row = mysqli_fetch_assoc( $result ) ){
+                          if($row['isMentor']=='1'){
+                            echo $row['mentor_id'];
+                            echo "dfdf";
+                          }
+                        }
+                      }else if($result_mentor){
+                        while( $row = mysqli_fetch_assoc( $result_mentor ) ){
+                          if($row['isMentor']=='1'){
+                            echo $row['mentee_id'];
+                            echo "dfdf";
+                          }
+                        }
+                      }
+                        $result = mysqli_query($conn, $sql);
+                        ?>
                       </div>
                     </div>
                 </div>
@@ -223,44 +305,42 @@ session_start();
                       <h4 class="tem-member">멘토링 신청을 수락/거절 해주세요!</h4>
                       <h6>Frontend Developer</h6>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                      <ul class="team-social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                      </ul>
+                      <?php
+
+                      $idmentee = $_SESSION['name'];
+                      $result_apply= mysqli_query($conn, 'SELECT * FROM matching WHERE mentor_id='.$_SESSION['name'].'');
+
+                      if( $result_apply ){
+                      // success! check results
+
+                      while( $row = mysqli_fetch_assoc( $result_apply ) ){
+                      echo "<tr>";
+                      echo"<td>".$row['mentee_id']."</td>";
+                      echo"<td>";
+                      echo'<form action="accept.php" method="post">';
+                      echo'<input type="submit" value="accept">';
+                      echo'<input type="hidden" name="idmentee"value=" echo $row["mentee_id"]">';
+              		//echo"</form>;
+                      echo"</td>";
+                      echo"</tr>";
+                      }
+                      }
+
+                      else{
+                      // failure! check for errors and do something else
+                      echo '<input class="btn btn-default" type="button" value="글 등록" onclick={location.href="http://localhost:8080/studying.php?id=6"}><br><br>';
+
+                      }
+
+                      ?>
+
                     </div>
                   </div>
 
               </div>
 
 
-                <?php
 
-                $sqli = 'SELECT * FROM matching WHERE name='.$_SESSION['name'].'';//name 자리에 로그인한 멘토의 정보
-
-                $result_apply= mysqli_query($conn, $sqli);
-
-                if( $result_apply ){
-                // success! check results
-
-                while( $row = mysqli_fetch_assoc( $result_apply ) ){
-
-                    echo $row['mentor_id']." ".$row['mentee_id'];
-                }
-                }
-
-                else{
-                // failure! check for errors and do something else
-                echo '<input class="btn btn-default" type="button" value="글 등록" onclick={location.href="http://localhost:8080/studying.php?id=6"}><br><br>';
-
-                }
-
-                ?>
               </div>
             </div>
 

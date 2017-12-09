@@ -140,6 +140,7 @@ session_start();
         if(empty($_GET['idd'])===false){   // 어떤 글이라도 클릭했을 시 idd 를 받아옴
           $bno = $_GET['idd'];
           $result_post = mysqli_query($conn,'SELECT * FROM post where post_no = '.$bno.'');
+          $result_comment = mysqli_query($conn,'SELECT * FROM comment where post_no = '.$bno.'');
           $board = mysqli_fetch_array($result_post);
         }
 
@@ -182,6 +183,18 @@ session_start();
           <td width=50 height=250 bgcolor=#999999 align=center><font color=white size=4px>Content</font></td>
           <td colspan=3 style='color:#fff'>".$board['content']."</td>
           </tr>";
+
+          //댓글 보여주기
+          echo"<tr>";
+          while( $row = mysqli_fetch_assoc($result_comment)){
+            echo "<tr>
+            <td width=50 bgcolor=white>Comment</td>
+            <td width=240 style='color:#fff'>".$row['content']."</td>";
+            echo "<td style='color:#fff' align=right>".$row['author']."</td>
+            <td width=120 style='color:#fff' align=right>".$row['created']."</td></tr>";
+          }
+          echo "</tr>";
+
           //목록보기, 글쓰기, 삭제 버튼
           echo "<tr><table width =100%><tr>
           <td colsapn=4 align=right><a href=#board><font color=white>[ 목록보기 ]</font></a>";
@@ -191,6 +204,18 @@ session_start();
           echo "</td>
           </tr>";
           echo "</table>";
+
+          //댓글 입력
+          echo "<form action='comment.php?idd=".$board['post_no']."' method='post'>
+            <div class='form-group'>
+              <br>
+              <label for='content' style='color:#fff; font-size:20px' >Comment</label>
+              <textarea name='comment' class='form-control' id='comment' rows='4' cols='80'></textarea><br>
+              <input class='btn btn-common wow fadeInUp'  type='submit' value='Submit'>
+            </div>
+          </form>";
+
+
 
           //조회수 업데이트
           $result_post = mysqli_query($conn,'UPDATE post SET hits=hits+1 WHERE post_no = '.$bno.'');
@@ -267,7 +292,7 @@ session_start();
                    <h2 class="client-name">Sheryl Sandberg</h2>
                    <h4 class="client-details">COO of Facebook</h4>
                   </div>
-                  <img class="img-member" src="img/imgsample/img3.png" alt="">
+                  <img class="img-member" src="img/imgsample/img4.png" alt="">
                 </div>
               </div>
             </div>

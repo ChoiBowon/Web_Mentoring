@@ -3,13 +3,6 @@ header("Content-Type:text/html;charset=utf-8");
 session_start();
 require_once("connect.php");
 
-if (!$conn)
-{
-   echo "MySQL 접속 에러 : ";
-   echo mysqli_connect_error();
-   exit();
-}
-
   $result = mysqli_query($conn, "SELECT * FROM matching");
 
   $idmentor = $_GET['menteeapply'];//멘티가 신청 버튼을 누른 멘토
