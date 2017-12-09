@@ -217,9 +217,9 @@ session_start();
           <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="single-team wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="400ms">
               <div class="team-content">
-                <h4 class="tem-member">John Doe</h4>
-                <h6>web developer</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h4 class="tem-member">Facebook</h4>
+                <h6>U.S.A</h6>
+                <p>The Facebook Page celebrates how our friends inspire us, support us, and help us discover the world when we connect.</p>
                 <ul class="team-social">
                   <li><a href="#"><i class="fa fa-facebook"></i></a>
                   </li>
@@ -236,9 +236,9 @@ session_start();
           <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="single-team wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="500ms">
               <div class="team-content">
-                <h4 class="tem-member">Sommer Christian</h4>
-                <h6>social marketing</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h4 class="tem-member">Google</h4>
+                <h6>U.S.A</h6>
+                <p>Organizing the world's information and making it universally accessible and useful.</p>
                 <ul class="team-social">
                   <li><a href="#"><i class="fa fa-facebook"></i></a>
                   </li>
@@ -255,9 +255,9 @@ session_start();
           <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="single-team wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms">
               <div class="team-content">
-                <h4 class="tem-member">Ben Davis</h4>
-                <h6>Frontend Developer</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h4 class="tem-member">Apple</h4>
+                <h6>U.S.A</h6>
+                <p>The most powerful products for business are the ones people already love to use.</p>
                 <ul class="team-social">
                   <li><a href="#"><i class="fa fa-facebook"></i></a>
                   </li>
@@ -277,9 +277,9 @@ session_start();
         <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="single-team wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="400ms">
             <div class="team-content">
-              <h4 class="tem-member">John Doe</h4>
-              <h6>web developer</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h4 class="tem-member">Samsung</h4>
+              <h6>South Korea</h6>
+              <p>삼성그룹의 대표 기업으로 휴대폰, 정보통신기기, 반도체, TV 등을 생산 판매하는 제조업체</p>
               <ul class="team-social">
                 <li><a href="#"><i class="fa fa-facebook"></i></a>
                 </li>
@@ -296,9 +296,9 @@ session_start();
         <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="single-team wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="500ms">
             <div class="team-content">
-              <h4 class="tem-member">Sommer Christian</h4>
-              <h6>social marketing</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h4 class="tem-member">LG</h4>
+              <h6>South Korea</h6>
+              <p>LG그룹 계열사로 가전제품, 정보통신기기 제조 판매업체</p>
               <ul class="team-social">
                 <li><a href="#"><i class="fa fa-facebook"></i></a>
                 </li>
@@ -315,9 +315,9 @@ session_start();
         <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="single-team wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms">
             <div class="team-content">
-              <h4 class="tem-member">Ben Davis</h4>
-              <h6>Frontend Developer</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h4 class="tem-member">Naver</h4>
+              <h6>South Korea</h6>
+              <p>인터넷포털 '네이버(NAVER)'와 글로벌 모바일 메신저 '라인(LINE)' 등을 운영하는 글로벌 기업</p>
               <ul class="team-social">
                 <li><a href="#"><i class="fa fa-facebook"></i></a>
                 </li>
